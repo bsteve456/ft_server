@@ -16,6 +16,9 @@ RUN nginx -t
 RUN service nginx reload
 ADD srcs/info.php /usr/share/nginx/html/
 RUN ln -s /usr/share/phpMyAdmin/ /usr/share/nginx/html/
+ADD srcs/create_user_database_sql.sh /create_user_database_sql.sh
+RUN chmod 755 create_user_database_sql.sh
+RUN ./create_user_database_sql.sh
 ADD srcs/start.sh /usr/bin/start.sh
 RUN chmod 755 /usr/bin/start.sh
 EXPOSE 80
